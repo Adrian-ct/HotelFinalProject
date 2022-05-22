@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Personal Stuff\Facultate\MVP\FinalProject\Hotel\Hotel\obj\Debug\
+C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\obj\Debug\
 Hotel
 none
 false
 DEBUG;TRACE
-C:\Personal Stuff\Facultate\MVP\FinalProject\Hotel\Hotel\App.xaml
-1219584333
+C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\App.xaml
+4-574820003
 2138210883
-25506920193
-19-1442055235
-MainWindow.xaml;
+36751823265
+19-474315861
+View\GuestWindow.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;View\RegisterWindow.xaml;
 
-False
+True
 

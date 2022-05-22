@@ -1,0 +1,33 @@
+﻿<Window x:Class="Hotel.View.GuestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.View"
+         xmlns:ViewModel="clr-namespace:Hotel.ViewModel" 
+        mc:Ignorable="d"
+        Title="GuestWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="listTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Username}" />
+                <TextBlock Text="{Binding First_name}"/>
+                <TextBlock Text="{Binding Last_name}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+
+
+    <Grid>
+
+        <ListBox x:Name="context" Width="400" Margin="10"
+         ItemsSource="{Binding Guests}"
+         ItemTemplate="{StaticResource listTemplate}">
+            <ListBox.DataContext>
+                <ViewModel:GuestViewModel/>
+            </ListBox.DataContext>
+        </ListBox>
+
+    </Grid>
+</Window>
