@@ -71,7 +71,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Help\RelayCommands.cs" />
+    <Compile Include="Models\BusinessLogicLayer\RoomBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UserBLL.cs" />
+    <Compile Include="Models\GetAllPersons_Result.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAllRooms_Result.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetRoomPictures_Result.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetRoomsFeatures_Result.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>

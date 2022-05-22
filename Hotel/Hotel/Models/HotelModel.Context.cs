@@ -52,5 +52,20 @@ namespace Hotel.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoomsFeatures_Result>("GetRoomsFeatures");
         }
+    
+        public virtual ObjectResult<GetAllPersons_Result> GetAllPersons()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllPersons_Result>("GetAllPersons");
+        }
+    
+        public virtual ObjectResult<GetAllRooms_Result> GetAllRooms()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllRooms_Result>("GetAllRooms");
+        }
+    
+        public virtual ObjectResult<GetRoomPictures_Result> GetRoomPictures()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoomPictures_Result>("GetRoomPictures");
+        }
     }
 }

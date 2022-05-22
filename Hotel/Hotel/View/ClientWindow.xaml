@@ -13,7 +13,8 @@
     </Window.DataContext>
 
     <Grid>
-
+        <DatePicker Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40, 20" SelectedDate="{Binding CheckIn}"/>
+        <DatePicker Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="200, 20" SelectedDate="{Binding CheckOut}"/>
         <ListBox BorderThickness="2" Grid.Row="2" x:Name="listBox"  Margin="40,100,40,0"  AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Beige" ItemsSource="{Binding Rooms}">
             <ListBox.ItemTemplate >
                 <DataTemplate>
@@ -44,7 +45,7 @@
                                     <TextBlock Margin="0, 0, 30,0"  Text="{Binding price}" FontSize="20"></TextBlock>
 
                                 </StackPanel>
-                                <Button Content="Rezerva" Margin="0, 50, 0, 0" Padding="4" Background="#ffd77b"/>
+                                <Button Content="Rezerva" Margin="0, 50, 0, 0" Padding="4" Background="#ffd77b" Command="{Binding DataContext.BookCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"/>
                             </StackPanel>
                            
                         </Grid>
