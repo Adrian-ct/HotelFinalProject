@@ -1,0 +1,1398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="room_number" />
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="room_number" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_receipt" Type="int" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Booking_State">
+          <Key>
+            <PropertyRef Name="state" />
+          </Key>
+          <Property Name="state" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offer_Service">
+          <Key>
+            <PropertyRef Name="id_offer" />
+            <PropertyRef Name="service" />
+          </Key>
+          <Property Name="id_offer" Type="int" Nullable="false" />
+          <Property Name="service" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="url" />
+          </Key>
+          <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Receipt">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="price" Type="float" />
+        </EntityType>
+        <EntityType Name="Receipt_Offer">
+          <Key>
+            <PropertyRef Name="id_offer" />
+            <PropertyRef Name="id_receipt" />
+          </Key>
+          <Property Name="id_offer" Type="int" Nullable="false" />
+          <Property Name="id_receipt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Receipt_Service">
+          <Key>
+            <PropertyRef Name="id_receipt" />
+            <PropertyRef Name="service" />
+          </Key>
+          <Property Name="id_receipt" Type="int" Nullable="false" />
+          <Property Name="service" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="number" />
+          </Key>
+          <Property Name="number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_Feature">
+          <Key>
+            <PropertyRef Name="number" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_Picture">
+          <Key>
+            <PropertyRef Name="url" />
+            <PropertyRef Name="room_number" />
+          </Key>
+          <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="room_number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_Type">
+          <Key>
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="type" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="Booking_fk0">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="room_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Booking_fk1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Booking_fk2">
+          <End Role="Booking_State" Type="Self.Booking_State" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_State">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Booking_fk3">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__id_rece__45F365D3">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__room_nu__4316F928">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="room_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__state__44FF419A">
+          <End Role="Booking_State" Type="Self.Booking_State" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_State">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__usernam__440B1D61">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_Ser__id_of__36B12243">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_Ser__servi__37A5467C">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_O__id_of__48CFD27E">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_O__id_re__49C3F6B7">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_S__id_re__4CA06362">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Service" Type="Self.Receipt_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Service">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_S__servi__4D94879B">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Receipt_Service" Type="Self.Receipt_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Receipt_Service">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__type__2A4B4B5E">
+          <End Role="Room_Type" Type="Self.Room_Type" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room_Type">
+              <PropertyRef Name="type" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Feat__numbe__2F10007B">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Featu__name__300424B4">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Pict__room___5FB337D6">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Room_Picture" Type="Self.Room_Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Room_Picture">
+              <PropertyRef Name="room_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Pictur__url__5EBF139D">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="Room_Picture" Type="Self.Room_Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="url" />
+            </Principal>
+            <Dependent Role="Room_Picture">
+              <PropertyRef Name="url" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__role__25869641">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Offer_Service_fk0">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Offer_Service_fk1">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Receipt_Offer_fk0">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Receipt_Offer_fk1">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Receipt_Service_fk0">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Service" Type="Self.Receipt_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Service">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Room_Feature_fk0">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Room_Feature_fk1">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_fk0">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="HotelModelStoreContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking_State" EntityType="Self.Booking_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer_Service" EntityType="Self.Offer_Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipt" EntityType="Self.Receipt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipt_Offer" EntityType="Self.Receipt_Offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipt_Service" EntityType="Self.Receipt_Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_Feature" EntityType="Self.Room_Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_Picture" EntityType="Self.Room_Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_Type" EntityType="Self.Room_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Booking_fk0" Association="Self.Booking_fk0">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="Booking_fk1" Association="Self.Booking_fk1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="Booking_fk2" Association="Self.Booking_fk2">
+            <End Role="Booking_State" EntitySet="Booking_State" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="Booking_fk3" Association="Self.Booking_fk3">
+            <End Role="Receipt" EntitySet="Receipt" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__id_rece__45F365D3" Association="Self.FK__Booking__id_rece__45F365D3">
+            <End Role="Receipt" EntitySet="Receipt" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__room_nu__4316F928" Association="Self.FK__Booking__room_nu__4316F928">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__state__44FF419A" Association="Self.FK__Booking__state__44FF419A">
+            <End Role="Booking_State" EntitySet="Booking_State" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__usernam__440B1D61" Association="Self.FK__Booking__usernam__440B1D61">
+            <End Role="User" EntitySet="User" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_Ser__id_of__36B12243" Association="Self.FK__Offer_Ser__id_of__36B12243">
+            <End Role="Offer" EntitySet="Offer" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_Ser__servi__37A5467C" Association="Self.FK__Offer_Ser__servi__37A5467C">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_O__id_of__48CFD27E" Association="Self.FK__Receipt_O__id_of__48CFD27E">
+            <End Role="Offer" EntitySet="Offer" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_O__id_re__49C3F6B7" Association="Self.FK__Receipt_O__id_re__49C3F6B7">
+            <End Role="Receipt" EntitySet="Receipt" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_S__id_re__4CA06362" Association="Self.FK__Receipt_S__id_re__4CA06362">
+            <End Role="Receipt" EntitySet="Receipt" />
+            <End Role="Receipt_Service" EntitySet="Receipt_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_S__servi__4D94879B" Association="Self.FK__Receipt_S__servi__4D94879B">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Receipt_Service" EntitySet="Receipt_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__type__2A4B4B5E" Association="Self.FK__Room__type__2A4B4B5E">
+            <End Role="Room_Type" EntitySet="Room_Type" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Feat__numbe__2F10007B" Association="Self.FK__Room_Feat__numbe__2F10007B">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Featu__name__300424B4" Association="Self.FK__Room_Featu__name__300424B4">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Pict__room___5FB337D6" Association="Self.FK__Room_Pict__room___5FB337D6">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Room_Picture" EntitySet="Room_Picture" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Pictur__url__5EBF139D" Association="Self.FK__Room_Pictur__url__5EBF139D">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="Room_Picture" EntitySet="Room_Picture" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__role__25869641" Association="Self.FK__User__role__25869641">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="Offer_Service_fk0" Association="Self.Offer_Service_fk0">
+            <End Role="Offer" EntitySet="Offer" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="Offer_Service_fk1" Association="Self.Offer_Service_fk1">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="Receipt_Offer_fk0" Association="Self.Receipt_Offer_fk0">
+            <End Role="Offer" EntitySet="Offer" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="Receipt_Offer_fk1" Association="Self.Receipt_Offer_fk1">
+            <End Role="Receipt" EntitySet="Receipt" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="Receipt_Service_fk0" Association="Self.Receipt_Service_fk0">
+            <End Role="Receipt" EntitySet="Receipt" />
+            <End Role="Receipt_Service" EntitySet="Receipt_Service" />
+          </AssociationSet>
+          <AssociationSet Name="Room_Feature_fk0" Association="Self.Room_Feature_fk0">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="Room_Feature_fk1" Association="Self.Room_Feature_fk1">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="User_fk0" Association="Self.User_fk0">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="room_number" />
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="room_number" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_receipt" Type="Int32" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Room" Relationship="Self.Booking_fk0" FromRole="Booking" ToRole="Room" />
+          <NavigationProperty Name="User" Relationship="Self.Booking_fk1" FromRole="Booking" ToRole="User" />
+          <NavigationProperty Name="Booking_State" Relationship="Self.Booking_fk2" FromRole="Booking" ToRole="Booking_State" />
+          <NavigationProperty Name="Receipt" Relationship="Self.Booking_fk3" FromRole="Booking" ToRole="Receipt" />
+          <NavigationProperty Name="Receipt1" Relationship="Self.FK__Booking__id_rece__45F365D3" FromRole="Booking" ToRole="Receipt" />
+          <NavigationProperty Name="Room1" Relationship="Self.FK__Booking__room_nu__4316F928" FromRole="Booking" ToRole="Room" />
+          <NavigationProperty Name="Booking_State1" Relationship="Self.FK__Booking__state__44FF419A" FromRole="Booking" ToRole="Booking_State" />
+          <NavigationProperty Name="User1" Relationship="Self.FK__Booking__usernam__440B1D61" FromRole="Booking" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Booking_State">
+          <Key>
+            <PropertyRef Name="state" />
+          </Key>
+          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.Booking_fk2" FromRole="Booking_State" ToRole="Booking" />
+          <NavigationProperty Name="Bookings1" Relationship="Self.FK__Booking__state__44FF419A" FromRole="Booking_State" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Room_Feature" Relationship="Self.FK__Room_Featu__name__300424B4" FromRole="Feature" ToRole="Room_Feature" />
+          <NavigationProperty Name="Room_Feature1" Relationship="Self.Room_Feature_fk1" FromRole="Feature" ToRole="Room_Feature" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Offer_Service" Relationship="Self.FK__Offer_Ser__id_of__36B12243" FromRole="Offer" ToRole="Offer_Service" />
+          <NavigationProperty Name="Receipt_Offer" Relationship="Self.FK__Receipt_O__id_of__48CFD27E" FromRole="Offer" ToRole="Receipt_Offer" />
+          <NavigationProperty Name="Offer_Service1" Relationship="Self.Offer_Service_fk0" FromRole="Offer" ToRole="Offer_Service" />
+          <NavigationProperty Name="Receipt_Offer1" Relationship="Self.Receipt_Offer_fk0" FromRole="Offer" ToRole="Receipt_Offer" />
+        </EntityType>
+        <EntityType Name="Offer_Service">
+          <Key>
+            <PropertyRef Name="id_offer" />
+            <PropertyRef Name="service" />
+          </Key>
+          <Property Name="id_offer" Type="Int32" Nullable="false" />
+          <Property Name="service" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Offer" Relationship="Self.FK__Offer_Ser__id_of__36B12243" FromRole="Offer_Service" ToRole="Offer" />
+          <NavigationProperty Name="Offer1" Relationship="Self.Offer_Service_fk0" FromRole="Offer_Service" ToRole="Offer" />
+          <NavigationProperty Name="Service1" Relationship="Self.FK__Offer_Ser__servi__37A5467C" FromRole="Offer_Service" ToRole="Service" />
+          <NavigationProperty Name="Service2" Relationship="Self.Offer_Service_fk1" FromRole="Offer_Service" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="url" />
+          </Key>
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Rooms" Relationship="Self.Room_Picture" FromRole="Picture" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Receipt">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="price" Type="Double" />
+          <NavigationProperty Name="Bookings" Relationship="Self.Booking_fk3" FromRole="Receipt" ToRole="Booking" />
+          <NavigationProperty Name="Bookings1" Relationship="Self.FK__Booking__id_rece__45F365D3" FromRole="Receipt" ToRole="Booking" />
+          <NavigationProperty Name="Receipt_Offer" Relationship="Self.FK__Receipt_O__id_re__49C3F6B7" FromRole="Receipt" ToRole="Receipt_Offer" />
+          <NavigationProperty Name="Receipt_Service" Relationship="Self.FK__Receipt_S__id_re__4CA06362" FromRole="Receipt" ToRole="Receipt_Service" />
+          <NavigationProperty Name="Receipt_Offer1" Relationship="Self.Receipt_Offer_fk1" FromRole="Receipt" ToRole="Receipt_Offer" />
+          <NavigationProperty Name="Receipt_Service1" Relationship="Self.Receipt_Service_fk0" FromRole="Receipt" ToRole="Receipt_Service" />
+        </EntityType>
+        <EntityType Name="Receipt_Offer">
+          <Key>
+            <PropertyRef Name="id_offer" />
+            <PropertyRef Name="id_receipt" />
+          </Key>
+          <Property Name="id_offer" Type="Int32" Nullable="false" />
+          <Property Name="id_receipt" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Offer" Relationship="Self.FK__Receipt_O__id_of__48CFD27E" FromRole="Receipt_Offer" ToRole="Offer" />
+          <NavigationProperty Name="Offer1" Relationship="Self.Receipt_Offer_fk0" FromRole="Receipt_Offer" ToRole="Offer" />
+          <NavigationProperty Name="Receipt" Relationship="Self.FK__Receipt_O__id_re__49C3F6B7" FromRole="Receipt_Offer" ToRole="Receipt" />
+          <NavigationProperty Name="Receipt1" Relationship="Self.Receipt_Offer_fk1" FromRole="Receipt_Offer" ToRole="Receipt" />
+        </EntityType>
+        <EntityType Name="Receipt_Service">
+          <Key>
+            <PropertyRef Name="id_receipt" />
+            <PropertyRef Name="service" />
+          </Key>
+          <Property Name="id_receipt" Type="Int32" Nullable="false" />
+          <Property Name="service" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Receipt" Relationship="Self.FK__Receipt_S__id_re__4CA06362" FromRole="Receipt_Service" ToRole="Receipt" />
+          <NavigationProperty Name="Receipt1" Relationship="Self.Receipt_Service_fk0" FromRole="Receipt_Service" ToRole="Receipt" />
+          <NavigationProperty Name="Service1" Relationship="Self.FK__Receipt_S__servi__4D94879B" FromRole="Receipt_Service" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__User__role__25869641" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Users1" Relationship="Self.User_fk0" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="number" />
+          </Key>
+          <Property Name="number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.Booking_fk0" FromRole="Room" ToRole="Booking" />
+          <NavigationProperty Name="Bookings1" Relationship="Self.FK__Booking__room_nu__4316F928" FromRole="Room" ToRole="Booking" />
+          <NavigationProperty Name="Room_Type" Relationship="Self.FK__Room__type__2A4B4B5E" FromRole="Room" ToRole="Room_Type" />
+          <NavigationProperty Name="Room_Feature" Relationship="Self.FK__Room_Feat__numbe__2F10007B" FromRole="Room" ToRole="Room_Feature" />
+          <NavigationProperty Name="Room_Feature1" Relationship="Self.Room_Feature_fk0" FromRole="Room" ToRole="Room_Feature" />
+          <NavigationProperty Name="Pictures" Relationship="Self.Room_Picture" FromRole="Room" ToRole="Picture" />
+        </EntityType>
+        <EntityType Name="Room_Feature">
+          <Key>
+            <PropertyRef Name="number" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Feature" Relationship="Self.FK__Room_Featu__name__300424B4" FromRole="Room_Feature" ToRole="Feature" />
+          <NavigationProperty Name="Feature1" Relationship="Self.Room_Feature_fk1" FromRole="Room_Feature" ToRole="Feature" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__Room_Feat__numbe__2F10007B" FromRole="Room_Feature" ToRole="Room" />
+          <NavigationProperty Name="Room1" Relationship="Self.Room_Feature_fk0" FromRole="Room_Feature" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Room_Type">
+          <Key>
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK__Room__type__2A4B4B5E" FromRole="Room_Type" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Offer_Service" Relationship="Self.FK__Offer_Ser__servi__37A5467C" FromRole="Service" ToRole="Offer_Service" />
+          <NavigationProperty Name="Offer_Service1" Relationship="Self.Offer_Service_fk1" FromRole="Service" ToRole="Offer_Service" />
+          <NavigationProperty Name="Receipt_Service" Relationship="Self.FK__Receipt_S__servi__4D94879B" FromRole="Service" ToRole="Receipt_Service" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.Booking_fk1" FromRole="User" ToRole="Booking" />
+          <NavigationProperty Name="Bookings1" Relationship="Self.FK__Booking__usernam__440B1D61" FromRole="User" ToRole="Booking" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK__User__role__25869641" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Role2" Relationship="Self.User_fk0" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="Booking_fk0">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="room_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Booking_fk1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Booking_fk2">
+          <End Role="Booking_State" Type="Self.Booking_State" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_State">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Booking_fk3">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__id_rece__45F365D3">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__room_nu__4316F928">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="room_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__state__44FF419A">
+          <End Role="Booking_State" Type="Self.Booking_State" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_State">
+              <PropertyRef Name="state" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__usernam__440B1D61">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Featu__name__300424B4">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Room_Feature_fk1">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_Ser__id_of__36B12243">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_O__id_of__48CFD27E">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Offer_Service_fk0">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Receipt_Offer_fk0">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_offer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Offer_Ser__servi__37A5467C">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Offer_Service_fk1">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Offer_Service" Type="Self.Offer_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Offer_Service">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_O__id_re__49C3F6B7">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_S__id_re__4CA06362">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Service" Type="Self.Receipt_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Service">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Receipt_Offer_fk1">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Offer" Type="Self.Receipt_Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Offer">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Receipt_Service_fk0">
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="1" />
+          <End Role="Receipt_Service" Type="Self.Receipt_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Receipt_Service">
+              <PropertyRef Name="id_receipt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt_S__servi__4D94879B">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Receipt_Service" Type="Self.Receipt_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Receipt_Service">
+              <PropertyRef Name="service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__role__25869641">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_fk0">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__type__2A4B4B5E">
+          <End Role="Room_Type" Type="Self.Room_Type" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room_Type">
+              <PropertyRef Name="type" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Feat__numbe__2F10007B">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Room_Feature_fk0">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Room_Feature" Type="Self.Room_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="number" />
+            </Principal>
+            <Dependent Role="Room_Feature">
+              <PropertyRef Name="number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Room_Picture">
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HotelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="Booking_State" EntityType="Self.Booking_State" />
+          <EntitySet Name="Features" EntityType="Self.Feature" />
+          <EntitySet Name="Offers" EntityType="Self.Offer" />
+          <EntitySet Name="Offer_Service" EntityType="Self.Offer_Service" />
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
+          <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+          <EntitySet Name="Receipt_Offer" EntityType="Self.Receipt_Offer" />
+          <EntitySet Name="Receipt_Service" EntityType="Self.Receipt_Service" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="Room_Feature" EntityType="Self.Room_Feature" />
+          <EntitySet Name="Room_Type" EntityType="Self.Room_Type" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="Booking_fk0" Association="Self.Booking_fk0">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="Booking_fk1" Association="Self.Booking_fk1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="Booking_fk2" Association="Self.Booking_fk2">
+            <End Role="Booking_State" EntitySet="Booking_State" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="Booking_fk3" Association="Self.Booking_fk3">
+            <End Role="Receipt" EntitySet="Receipts" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__id_rece__45F365D3" Association="Self.FK__Booking__id_rece__45F365D3">
+            <End Role="Receipt" EntitySet="Receipts" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__room_nu__4316F928" Association="Self.FK__Booking__room_nu__4316F928">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__state__44FF419A" Association="Self.FK__Booking__state__44FF419A">
+            <End Role="Booking_State" EntitySet="Booking_State" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__usernam__440B1D61" Association="Self.FK__Booking__usernam__440B1D61">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Featu__name__300424B4" Association="Self.FK__Room_Featu__name__300424B4">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="Room_Feature_fk1" Association="Self.Room_Feature_fk1">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_Ser__id_of__36B12243" Association="Self.FK__Offer_Ser__id_of__36B12243">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_O__id_of__48CFD27E" Association="Self.FK__Receipt_O__id_of__48CFD27E">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="Offer_Service_fk0" Association="Self.Offer_Service_fk0">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="Receipt_Offer_fk0" Association="Self.Receipt_Offer_fk0">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Offer_Ser__servi__37A5467C" Association="Self.FK__Offer_Ser__servi__37A5467C">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="Offer_Service_fk1" Association="Self.Offer_Service_fk1">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Offer_Service" EntitySet="Offer_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_O__id_re__49C3F6B7" Association="Self.FK__Receipt_O__id_re__49C3F6B7">
+            <End Role="Receipt" EntitySet="Receipts" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_S__id_re__4CA06362" Association="Self.FK__Receipt_S__id_re__4CA06362">
+            <End Role="Receipt" EntitySet="Receipts" />
+            <End Role="Receipt_Service" EntitySet="Receipt_Service" />
+          </AssociationSet>
+          <AssociationSet Name="Receipt_Offer_fk1" Association="Self.Receipt_Offer_fk1">
+            <End Role="Receipt" EntitySet="Receipts" />
+            <End Role="Receipt_Offer" EntitySet="Receipt_Offer" />
+          </AssociationSet>
+          <AssociationSet Name="Receipt_Service_fk0" Association="Self.Receipt_Service_fk0">
+            <End Role="Receipt" EntitySet="Receipts" />
+            <End Role="Receipt_Service" EntitySet="Receipt_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt_S__servi__4D94879B" Association="Self.FK__Receipt_S__servi__4D94879B">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Receipt_Service" EntitySet="Receipt_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__role__25869641" Association="Self.FK__User__role__25869641">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="User_fk0" Association="Self.User_fk0">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__type__2A4B4B5E" Association="Self.FK__Room__type__2A4B4B5E">
+            <End Role="Room_Type" EntitySet="Room_Type" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Feat__numbe__2F10007B" Association="Self.FK__Room_Feat__numbe__2F10007B">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="Room_Feature_fk0" Association="Self.Room_Feature_fk0">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Room_Feature" EntitySet="Room_Feature" />
+          </AssociationSet>
+          <AssociationSet Name="Room_Picture" Association="Self.Room_Picture">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Picture" EntitySet="Pictures" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllUsers" ReturnType="Collection(HotelModel.GetAllUsers_Result)" />
+        </EntityContainer>
+        <ComplexType Name="GetAllUsers_Result">
+          <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="last_name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="role" Nullable="false" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelModelStoreContainer" CdmEntityContainer="HotelEntities">
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="HotelModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="room_number" ColumnName="room_number" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="id_receipt" ColumnName="id_receipt" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Booking_State">
+            <EntityTypeMapping TypeName="HotelModel.Booking_State">
+              <MappingFragment StoreEntitySet="Booking_State">
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="HotelModel.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="HotelModel.Offer">
+              <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offer_Service">
+            <EntityTypeMapping TypeName="HotelModel.Offer_Service">
+              <MappingFragment StoreEntitySet="Offer_Service">
+                <ScalarProperty Name="id_offer" ColumnName="id_offer" />
+                <ScalarProperty Name="service" ColumnName="service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="HotelModel.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipts">
+            <EntityTypeMapping TypeName="HotelModel.Receipt">
+              <MappingFragment StoreEntitySet="Receipt">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipt_Offer">
+            <EntityTypeMapping TypeName="HotelModel.Receipt_Offer">
+              <MappingFragment StoreEntitySet="Receipt_Offer">
+                <ScalarProperty Name="id_offer" ColumnName="id_offer" />
+                <ScalarProperty Name="id_receipt" ColumnName="id_receipt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipt_Service">
+            <EntityTypeMapping TypeName="HotelModel.Receipt_Service">
+              <MappingFragment StoreEntitySet="Receipt_Service">
+                <ScalarProperty Name="id_receipt" ColumnName="id_receipt" />
+                <ScalarProperty Name="service" ColumnName="service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="HotelModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="HotelModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_Feature">
+            <EntityTypeMapping TypeName="HotelModel.Room_Feature">
+              <MappingFragment StoreEntitySet="Room_Feature">
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_Type">
+            <EntityTypeMapping TypeName="HotelModel.Room_Type">
+              <MappingFragment StoreEntitySet="Room_Type">
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="HotelModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HotelModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Room_Picture" TypeName="HotelModel.Room_Picture" StoreEntitySet="Room_Picture">
+            <EndProperty Name="Room">
+              <ScalarProperty Name="number" ColumnName="room_number" />
+            </EndProperty>
+            <EndProperty Name="Picture">
+              <ScalarProperty Name="url" ColumnName="url" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllUsers" FunctionName="HotelModel.Store.GetAllUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelModel.GetAllUsers_Result">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
