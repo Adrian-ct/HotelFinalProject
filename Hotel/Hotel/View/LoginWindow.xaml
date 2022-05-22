@@ -12,10 +12,10 @@
     </Window.DataContext>
     <Grid>
         <Label HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="125" Height="30" Width="200">Username</Label>
-        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200"></TextBox>
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200" Text="{Binding Password}" ></TextBox>
         <Label HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="175" Height="30" Width="200">Password</Label>
-        <TextBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="150"  Height="30" Width="200"></TextBox>
-        <Button Content="Login" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="150" Height="30" Width="200" ></Button>
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="150"  Height="30" Width="200" Text="{Binding Username}"></TextBox>
+        <Button Content="Login" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="150" Height="30" Width="200" Command="{Binding LoginCommand}"></Button>
         <Button Content="Back" Width="100" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30" Command="{Binding BackCommand}"></Button>
 
     </Grid>

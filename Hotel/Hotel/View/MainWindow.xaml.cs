@@ -17,7 +17,7 @@ namespace Hotel
         public MainWindow()
         {
             InitializeComponent();
-            HotelEntities context = new HotelEntities();
+           /* HotelEntities context = new HotelEntities();
             User user = new User();
             user.username = "Leo31431323123123";
             user.first_name = "Bote3zatu32";
@@ -26,7 +26,7 @@ namespace Hotel
 
             //user = context.Users.Add(new User() { username = "Emil", first_name = "Botezatu", last_name = "Emil", role = "employee", });
             context.Users.Add(user);
-            context.SaveChanges();
+            context.SaveChanges();*/
         }
     }
 }
