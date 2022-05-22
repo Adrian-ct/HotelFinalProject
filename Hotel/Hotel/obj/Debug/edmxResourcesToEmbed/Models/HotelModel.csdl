@@ -612,11 +612,17 @@
       <End Role="Picture" EntitySet="Pictures" />
     </AssociationSet>
     <FunctionImport Name="GetAllUsers" ReturnType="Collection(HotelModel.GetAllUsers_Result)" />
+    <FunctionImport Name="GetRoomsFeatures" ReturnType="Collection(HotelModel.GetRoomsFeatures_Result)" />
   </EntityContainer>
   <ComplexType Name="GetAllUsers_Result">
     <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="first_name" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="last_name" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="role" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="GetRoomsFeatures_Result">
+    <Property Type="Int32" Name="number" Nullable="false" />
+    <Property Type="String" Name="features" Nullable="true" />
+    <Property Type="String" Name="pictures" Nullable="true" />
   </ComplexType>
 </Schema>

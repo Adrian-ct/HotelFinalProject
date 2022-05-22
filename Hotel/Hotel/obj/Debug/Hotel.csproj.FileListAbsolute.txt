@@ -31,12 +31,10 @@ C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\bin\D
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\bin\Debug\EntityFramework.SqlServer.xml
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\bin\Debug\System.Web.Providers.xml
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel.csproj.AssemblyReference.cache
-C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\MainWindow.g.cs
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\App.g.cs
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel_Content.g.cs
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel_MarkupCompile.cache
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel_MarkupCompile.lref
-C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\MainWindow.baml
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel.g.resources
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel.Properties.Resources.resources
 C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel.csproj.GenerateResource.cache
@@ -106,3 +104,14 @@ C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug
 C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug\Hotel.pdb
 C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug\View\ClientWindow.g.cs
 C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug\View\ClientWindow.baml
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\ClientWindow.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\GuestWindow.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\LoginWindow.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\MainWindow.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\RegisterWindow.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\ClientWindow.baml
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\GuestWindow.baml
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\LoginWindow.baml
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\MainWindow.baml
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\RegisterWindow.baml

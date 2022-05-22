@@ -17,16 +17,22 @@ namespace Hotel
         public MainWindow()
         {
             InitializeComponent();
-           /* HotelEntities context = new HotelEntities();
-            User user = new User();
-            user.username = "Leo31431323123123";
-            user.first_name = "Bote3zatu32";
-            user.last_name = "Emil";
-            user.role = "employee";
+            /* HotelEntities context = new HotelEntities();
+             User user = new User();
+             user.username = "Leo31431323123123";
+             user.first_name = "Bote3zatu32";
+             user.last_name = "Emil";
+             user.role = "employee";
 
-            //user = context.Users.Add(new User() { username = "Emil", first_name = "Botezatu", last_name = "Emil", role = "employee", });
-            context.Users.Add(user);
-            context.SaveChanges();*/
+             //user = context.Users.Add(new User() { username = "Emil", first_name = "Botezatu", last_name = "Emil", role = "employee", });
+             context.Users.Add(user);
+             context.SaveChanges();*/
+            
+
+            //Testing the Stored Procedure Functionality
+            //HotelEntities context = new HotelEntities();
+            //var res = context.GetRoomsFeatures();
+            //var res2 = 3;
         }
     }
 }

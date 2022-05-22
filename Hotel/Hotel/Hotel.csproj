@@ -72,6 +72,9 @@
     </Compile>
     <Compile Include="Help\RelayCommands.cs" />
     <Compile Include="Models\BusinessLogicLayer\UserBLL.cs" />
+    <Compile Include="Models\GetRoomsFeatures_Result.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\ObservableObject.cs" />
     <Compile Include="Utilities\StaticResources.cs" />
     <Compile Include="ViewModel\GuestViewModel.cs" />

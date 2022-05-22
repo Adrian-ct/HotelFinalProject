@@ -14,7 +14,6 @@ namespace Hotel.Models
     
     public partial class Offer_Service
     {
-        
         public int id_offer { get; set; }
         public string service { get; set; }
     

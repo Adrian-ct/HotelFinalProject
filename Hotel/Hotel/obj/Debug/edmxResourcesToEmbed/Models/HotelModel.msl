@@ -146,5 +146,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetRoomsFeatures" FunctionName="HotelModel.Store.GetRoomsFeatures">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HotelModel.GetRoomsFeatures_Result">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="features" ColumnName="features" />
+          <ScalarProperty Name="pictures" ColumnName="pictures" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

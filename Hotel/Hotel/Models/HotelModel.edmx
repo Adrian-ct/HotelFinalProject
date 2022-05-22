@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="room_number" />
@@ -467,6 +467,7 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetRoomsFeatures" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="HotelModelStoreContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking_State" EntityType="Self.Booking_State" Schema="dbo" store:Type="Tables" />
@@ -597,8 +598,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1214,12 +1214,18 @@
             <End Role="Picture" EntitySet="Pictures" />
           </AssociationSet>
           <FunctionImport Name="GetAllUsers" ReturnType="Collection(HotelModel.GetAllUsers_Result)" />
+          <FunctionImport Name="GetRoomsFeatures" ReturnType="Collection(HotelModel.GetRoomsFeatures_Result)" />
         </EntityContainer>
         <ComplexType Name="GetAllUsers_Result">
           <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="first_name" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="last_name" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="role" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetRoomsFeatures_Result">
+          <Property Type="Int32" Name="number" Nullable="false" />
+          <Property Type="String" Name="features" Nullable="true" />
+          <Property Type="String" Name="pictures" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1369,6 +1375,15 @@
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="role" ColumnName="role" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRoomsFeatures" FunctionName="HotelModel.Store.GetRoomsFeatures">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelModel.GetRoomsFeatures_Result">
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="features" ColumnName="features" />
+                <ScalarProperty Name="pictures" ColumnName="pictures" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
