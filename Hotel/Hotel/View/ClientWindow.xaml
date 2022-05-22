@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.View"
+        
         xmlns:viewmodels="clr-namespace:Hotel.ViewModel"
         mc:Ignorable="d"
         Title="ClientWindow" Height="450" Width="800">
@@ -11,37 +12,48 @@
         <viewmodels:ClientViewModel/>
     </Window.DataContext>
 
-    <ListBox Grid.Row="2" x:Name="listBox"  Margin="40,0,40,0"  AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Rooms}">
-        <ListBox.ItemTemplate >
-            <DataTemplate>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" Grid.Column="0" >
-                        <Image Margin="3" Source="{Binding Pictures}"/>
-                        <TextBlock Margin="3" Text="Tip camera" FontSize="20"/>
-                        <TextBlock Margin="3" Text="{Binding type}" FontSize="20"/>
+    <Grid>
 
-                    </StackPanel>
-                    <Grid Grid.Column="1" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
+        <ListBox Background="Beige" Grid.Row="2" x:Name="listBox"  Margin="40,100,40,0"  AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Rooms}">
+            <ListBox.ItemTemplate  >
+                <DataTemplate>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Column="0"  >
 
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="1"  Margin="100 0 0 0">
-                            <TextBlock  Text="Pret:" FontSize="20"></TextBlock>
-                            <TextBlock  Text="{Binding price}" FontSize="20"></TextBlock>
+                            <ListBox ItemsSource="{Binding Pictures}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                                <ListBox.ItemTemplate >
+                                    <DataTemplate>
+                                        <Image Width="200" Height="100" Source="{Binding url}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                            <TextBlock Margin="3" Text="Tip camera:" FontSize="20"/>
+                            <TextBlock Margin="3" Text="{Binding type}" FontSize="20"/>
+
                         </StackPanel>
+                        <Grid Grid.Column="1" Margin="200, -50, 30, 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Top" >
+                                <TextBlock  Text="Pret:" FontSize="20"></TextBlock>
+                                <TextBlock  Text="{Binding price}" FontSize="20"></TextBlock>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
-                </Grid>
 
 
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
+    </Grid>
 </Window>
