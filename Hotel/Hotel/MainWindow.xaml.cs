@@ -25,10 +25,10 @@ namespace Hotel
             InitializeComponent();
             HotelEntities context = new HotelEntities();
             User user = new User();
-            user.username = "Emil";
+            user.username = "Leonard";
             user.first_name = "Botezatu";
             user.last_name = "Emil";
-            user.role = "client";
+            user.role = "employee";
 
             //user = context.Users.Add(new User() { username = "Emil", first_name = "Botezatu", last_name = "Emil", role = "employee", });
             context.Users.Add(user);
