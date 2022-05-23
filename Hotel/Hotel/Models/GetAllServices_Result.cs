@@ -11,10 +11,9 @@ namespace Hotel.Models
 {
     using System;
     
-    public partial class GetAllRooms_Result
+    public partial class GetAllServices_Result
     {
-        public int number { get; set; }
-        public string type { get; set; }
+        public string name { get; set; }
         public double price { get; set; }
     }
 }

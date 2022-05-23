@@ -17,10 +17,8 @@ namespace Hotel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Offer()
         {
-            this.Offer_Service = new HashSet<Offer_Service>();
-            this.Receipt_Offer = new HashSet<Receipt_Offer>();
-            this.Offer_Service1 = new HashSet<Offer_Service>();
-            this.Receipt_Offer1 = new HashSet<Receipt_Offer>();
+            this.Services = new HashSet<Service>();
+            this.Receipts = new HashSet<Receipt>();
         }
     
         public int id { get; set; }
@@ -31,12 +29,8 @@ namespace Hotel.Models
         public System.DateTime end_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Offer_Service> Offer_Service { get; set; }
+        public virtual ICollection<Service> Services { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Receipt_Offer> Receipt_Offer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Offer_Service> Offer_Service1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Receipt_Offer> Receipt_Offer1 { get; set; }
+        public virtual ICollection<Receipt> Receipts { get; set; }
     }
 }

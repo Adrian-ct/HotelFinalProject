@@ -12,11 +12,11 @@ namespace Hotel.Models.BusinessLogicLayer
 
         public List<Room> GetAllRooms(DateTime checkIn, DateTime checkOut)
         {
-            //checkIn.Date.ToString("yyyy-MM-dd");
-            //checkOut.Date.ToString("yyyy-MM-dd");
+            
+
             var list = context.SeeRoomsAvailable(checkIn.Date.ToString("yyyy-MM-dd"), checkOut.Date.ToString("yyyy-MM-dd"));
             List<Room> rooms = new List<Room>();
-
+    
             foreach (var roomAvailable in list.ToList())
             {
                 Room room = new Room();
@@ -28,9 +28,9 @@ namespace Hotel.Models.BusinessLogicLayer
 
                 foreach (var feature in features)
                 {
-                    Room_Feature roomFeature = new Room_Feature();
+                    Feature roomFeature = new Feature();
                     roomFeature.name = feature;
-                    room.Room_Feature.Add(roomFeature);
+                    room.Features.Add(roomFeature);
                 }
 
                 string[] images = roomAvailable.pictures.Split(',');
@@ -44,6 +44,12 @@ namespace Hotel.Models.BusinessLogicLayer
                 rooms.Add(room);
             }
             return rooms;
+        }
+
+        public void GetAllServices()
+        {
+            var list = context.GetAllServices();
+            
         }
 
 

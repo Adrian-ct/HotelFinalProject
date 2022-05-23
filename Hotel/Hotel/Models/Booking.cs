@@ -22,12 +22,7 @@ namespace Hotel.Models
         public System.DateTime end_date { get; set; }
     
         public virtual Room Room { get; set; }
-        public virtual User User { get; set; }
         public virtual Booking_State Booking_State { get; set; }
-        public virtual Receipt Receipt { get; set; }
-        public virtual Receipt Receipt1 { get; set; }
-        public virtual Room Room1 { get; set; }
-        public virtual Booking_State Booking_State1 { get; set; }
-        public virtual User User1 { get; set; }
+        public virtual User User { get; set; }
     }
 }

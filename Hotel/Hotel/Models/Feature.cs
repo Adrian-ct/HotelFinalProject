@@ -17,16 +17,13 @@ namespace Hotel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Feature()
         {
-            this.Room_Feature = new HashSet<Room_Feature>();
-            this.Room_Feature1 = new HashSet<Room_Feature>();
+            this.Rooms = new HashSet<Room>();
         }
     
         public string name { get; set; }
         public double price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room_Feature> Room_Feature { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room_Feature> Room_Feature1 { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

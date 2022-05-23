@@ -18,7 +18,6 @@ namespace Hotel.Models
         public User()
         {
             this.Bookings = new HashSet<Booking>();
-            this.Bookings1 = new HashSet<Booking>();
         }
     
         public string username { get; set; }
@@ -28,8 +27,6 @@ namespace Hotel.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Bookings1 { get; set; }
         public virtual Role Role1 { get; set; }
         public virtual Role Role2 { get; set; }
     }

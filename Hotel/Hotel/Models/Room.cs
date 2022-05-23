@@ -18,9 +18,7 @@ namespace Hotel.Models
         public Room()
         {
             this.Bookings = new HashSet<Booking>();
-            this.Bookings1 = new HashSet<Booking>();
-            this.Room_Feature = new HashSet<Room_Feature>();
-            this.Room_Feature1 = new HashSet<Room_Feature>();
+            this.Features = new HashSet<Feature>();
             this.Pictures = new HashSet<Picture>();
         }
     
@@ -30,13 +28,9 @@ namespace Hotel.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Bookings1 { get; set; }
         public virtual Room_Type Room_Type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room_Feature> Room_Feature { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room_Feature> Room_Feature1 { get; set; }
+        public virtual ICollection<Feature> Features { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Picture> Pictures { get; set; }
     }

@@ -31,17 +31,18 @@ namespace Hotel.Models
         public virtual DbSet<Booking_State> Booking_State { get; set; }
         public virtual DbSet<Feature> Features { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
-        public virtual DbSet<Offer_Service> Offer_Service { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<Receipt> Receipts { get; set; }
-        public virtual DbSet<Receipt_Offer> Receipt_Offer { get; set; }
-        public virtual DbSet<Receipt_Service> Receipt_Service { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
-        public virtual DbSet<Room_Feature> Room_Feature { get; set; }
         public virtual DbSet<Room_Type> Room_Type { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<User> Users { get; set; }
+    
+        public virtual ObjectResult<GetAllServices_Result> GetAllServices()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllServices_Result>("GetAllServices");
+        }
     
         public virtual ObjectResult<GetAllUsers_Result> GetAllUsers()
         {
@@ -51,31 +52,6 @@ namespace Hotel.Models
         public virtual ObjectResult<GetRoomsFeatures_Result> GetRoomsFeatures()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoomsFeatures_Result>("GetRoomsFeatures");
-        }
-    
-        public virtual ObjectResult<GetAllPersons_Result> GetAllPersons()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllPersons_Result>("GetAllPersons");
-        }
-    
-        public virtual ObjectResult<GetAllRooms_Result> GetAllRooms()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllRooms_Result>("GetAllRooms");
-        }
-    
-        public virtual ObjectResult<GetRoomPictures_Result> GetRoomPictures()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoomPictures_Result>("GetRoomPictures");
-        }
-    
-        public virtual ObjectResult<GetAllUsers1_Result> GetAllUsers1()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllUsers1_Result>("GetAllUsers1");
-        }
-    
-        public virtual ObjectResult<GetRoomsFeatures1_Result> GetRoomsFeatures1()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoomsFeatures1_Result>("GetRoomsFeatures1");
         }
     
         public virtual ObjectResult<SeeRoomsAvailable_Result> SeeRoomsAvailable(string start_date, string end_date)

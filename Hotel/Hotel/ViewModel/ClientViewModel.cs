@@ -2,6 +2,7 @@
 using Hotel.Models;
 using Hotel.Models.BusinessLogicLayer;
 using Hotel.Utilities;
+using Hotel.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -96,7 +97,13 @@ namespace Hotel.ViewModel
 
         public void Admin()
         {
-            MessageBox.Show("Admin");
+            AdminWindow adminWindow = new AdminWindow();
+
+            App.Current.MainWindow.Close();
+            App.Current.MainWindow = adminWindow;
+            adminWindow.Show();
+            //MessageBox.Show("Admin");
+
         }
 
         public string type;

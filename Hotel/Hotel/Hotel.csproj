@@ -71,32 +71,72 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Help\RelayCommands.cs" />
+    <Compile Include="Models\Booking.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Booking_State.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BusinessLogicLayer\RoomBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UserBLL.cs" />
-    <Compile Include="Models\GetAllPersons_Result.cs">
+    <Compile Include="Models\Feature.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetAllRooms_Result.cs">
+    <Compile Include="Models\GetAllServices_Result.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetAllUsers1_Result.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetRoomPictures_Result.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetRoomsFeatures1_Result.cs">
+    <Compile Include="Models\GetAllUsers_Result.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetRoomsFeatures_Result.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HotelModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HotelModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HotelModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Offer.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Picture.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Receipt.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Room.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Room_Type.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SeeRoomsAvailable_Result.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utilities\BooleanToVisibilityConverter.cs" />
     <Compile Include="Utilities\ObservableObject.cs" />
     <Compile Include="Utilities\StaticResources.cs" />
+    <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\DetailsViewModel.cs" />
     <Compile Include="ViewModel\GuestViewModel.cs" />
@@ -104,6 +144,9 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="View\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
@@ -124,70 +167,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Booking.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Booking_State.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetAllUsers_Result.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Guest.cs" />
-    <Compile Include="Models\HotelModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HotelModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HotelModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HotelModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HotelModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Offer.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Offer_Service.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Picture.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Receipt.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Receipt_Offer.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Receipt_Service.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Room.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Room_Feature.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Room_Type.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Service.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UserM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -222,23 +202,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Models\HotelModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HotelModel.edmx</DependentUpon>
-      <LastGenOutput>HotelModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\HotelModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HotelModel.edmx</DependentUpon>
-      <LastGenOutput>HotelModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -263,6 +234,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\HotelModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelModel.edmx</DependentUpon>
+      <LastGenOutput>HotelModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HotelModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelModel.edmx</DependentUpon>
+      <LastGenOutput>HotelModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
