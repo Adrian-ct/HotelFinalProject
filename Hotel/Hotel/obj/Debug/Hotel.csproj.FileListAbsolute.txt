@@ -119,3 +119,5 @@ C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\obj
 C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\obj\Debug\View\ClientWindow.baml
 C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\obj\Debug\View\DetailsWindow.g.cs
 C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\obj\Debug\View\DetailsWindow.baml
+C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug\View\DetailsWindow.g.cs
+C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug\View\DetailsWindow.baml

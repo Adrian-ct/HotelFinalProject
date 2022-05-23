@@ -19,6 +19,7 @@
     <Grid>
         <DatePicker Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40, 20" SelectedDate="{Binding CheckIn}"/>
         <DatePicker Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="200, 20" SelectedDate="{Binding CheckOut}"/>
+        <Button Background="AliceBlue" Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="350, 20" Content="Search" Command="{Binding SearchRooms}"/>
         <ListBox BorderThickness="2" Grid.Row="2" x:Name="listBox"  Margin="40,100,40,0"  AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Beige" ItemsSource="{Binding Rooms}">
             <ListBox.ItemTemplate >
                 <DataTemplate>
@@ -29,10 +30,10 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.Column="0"  >
 
-                            <ListBox ItemsSource="{Binding Pictures}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                            <ListBox ItemsSource="{Binding DataContext.Pictures, RelativeSource={RelativeSource AncestorType=ListBox}}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
                                 <ListBox.ItemTemplate >
                                     <DataTemplate>
-                                        <Image Width="200" Height="100" Source="{Binding url}"/>
+                                        <Image Width="200" Height="100" Source="{Binding}"/>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

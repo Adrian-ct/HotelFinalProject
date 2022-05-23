@@ -10,7 +10,7 @@ namespace Hotel.ViewModel
     internal class DetailsViewModel : ObservableObject
     {
         static RoomBLL room = new RoomBLL();
-        static public List<Hotel.Models.Room> roomsList = room.GetAllRooms();
+        static public List<Hotel.Models.Room> roomsList = room.GetAllRooms(new DateTime(2022,05, 01), new DateTime(2022, 06, 01));
         public DetailsViewModel()
         {
             string roomData = roomsList[index].ToString();

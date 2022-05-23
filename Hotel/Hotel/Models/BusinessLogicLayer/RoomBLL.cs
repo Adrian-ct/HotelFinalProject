@@ -10,38 +10,43 @@ namespace Hotel.Models.BusinessLogicLayer
     {
         HotelEntities context = new HotelEntities();
 
-        public List<Room> GetAllRooms()
+        public List<Room> GetAllRooms(DateTime checkIn, DateTime checkOut)
         {
-            List<Room> rooms = new List<Room>();    
-            foreach (GetAllRooms_Result room in context.GetAllRooms())
+            //checkIn.Date.ToString("yyyy-MM-dd");
+            //checkOut.Date.ToString("yyyy-MM-dd");
+            var list = context.SeeRoomsAvailable(checkIn.Date.ToString("yyyy-MM-dd"), checkOut.Date.ToString("yyyy-MM-dd"));
+            List<Room> rooms = new List<Room>();
+
+            foreach (var roomAvailable in list.ToList())
             {
-                Room roomDefault = new Room();
-                roomDefault.price = room.price;
-                roomDefault.type = room.type;
-                roomDefault.number = room.number;
+                Room room = new Room();
+                room.number = roomAvailable.number;
+                room.price = roomAvailable.price;
+                room.type = roomAvailable.type;
 
-                rooms.Add(roomDefault);
-            }
+                string[] features = roomAvailable.features.Split(',');
 
-            foreach (GetRoomPictures_Result pictures in context.GetRoomPictures())
-            {
-                Picture picture = new Picture();
-                picture.url = pictures.url;
-
-                foreach(Room room in rooms)
+                foreach (var feature in features)
                 {
-                    if (room.number == pictures.room_number)
-                    {
-                        room.Pictures.Add(picture);
-                    }
+                    Room_Feature roomFeature = new Room_Feature();
+                    roomFeature.name = feature;
+                    room.Room_Feature.Add(roomFeature);
                 }
+
+                string[] images = roomAvailable.pictures.Split(',');
+
+                foreach (var image in images)
+                {
+                    Picture roomPicture = new Picture();
+                    roomPicture.url = image;
+                    room.Pictures.Add(roomPicture);
+                }
+                rooms.Add(room);
             }
-
             return rooms;
-
         }
 
-       
+
         public User RegisterMethod(User user)
         {
             context.Users.Add(user);
