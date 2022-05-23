@@ -5,21 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fa25277f9e9f45839a5c9cc45208f27b" Name="Diagram1" ZoomLevel="120">
-        <EntityTypeShape EntityType="HotelModel.Booking" Width="1.5" PointX="6" PointY="4.125" />
-        <EntityTypeShape EntityType="HotelModel.Booking_State" Width="1.5" PointX="3.75" PointY="8.75" />
-        <EntityTypeShape EntityType="HotelModel.Feature" Width="1.5" PointX="5.75" PointY="1.125" />
-        <EntityTypeShape EntityType="HotelModel.Offer" Width="1.5" PointX="0.75" PointY="17.5" />
-        <EntityTypeShape EntityType="HotelModel.Offer_Service" Width="1.5" PointX="6" PointY="9.625" />
-        <EntityTypeShape EntityType="HotelModel.Picture" Width="1.5" PointX="6" PointY="12.75" />
-        <EntityTypeShape EntityType="HotelModel.Receipt" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="HotelModel.Receipt_Offer" Width="1.5" PointX="3" PointY="4.875" />
-        <EntityTypeShape EntityType="HotelModel.Receipt_Service" Width="1.5" PointX="3" PointY="2" />
-        <EntityTypeShape EntityType="HotelModel.Role" Width="1.5" PointX="1.5" PointY="15.125" />
-        <EntityTypeShape EntityType="HotelModel.Room" Width="1.5" PointX="3.75" PointY="11.125" />
-        <EntityTypeShape EntityType="HotelModel.Room_Feature" Width="1.5" PointX="9" PointY="6.375" />
-        <EntityTypeShape EntityType="HotelModel.Room_Type" Width="1.5" PointX="1.5" PointY="11.75" />
-        <EntityTypeShape EntityType="HotelModel.Service" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="HotelModel.User" Width="1.5" PointX="3.75" PointY="14.625" />
+        <EntityTypeShape EntityType="HotelModel.Booking" Width="1.5" PointX="6" PointY="4.375" />
+        <EntityTypeShape EntityType="HotelModel.Booking_State" Width="1.5" PointX="3.75" PointY="8" />
+        <EntityTypeShape EntityType="HotelModel.Feature" Width="1.5" PointX="5.75" PointY="1.375" />
+        <EntityTypeShape EntityType="HotelModel.Offer" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HotelModel.Offer_Service" Width="1.5" PointX="6" PointY="8.875" />
+        <EntityTypeShape EntityType="HotelModel.Picture" Width="1.5" PointX="6" PointY="12" />
+        <EntityTypeShape EntityType="HotelModel.Receipt" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="HotelModel.Receipt_Offer" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="HotelModel.Receipt_Service" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="HotelModel.Role" Width="1.5" PointX="1.5" PointY="15.375" />
+        <EntityTypeShape EntityType="HotelModel.Room" Width="1.5" PointX="3.75" PointY="11.375" />
+        <EntityTypeShape EntityType="HotelModel.Room_Feature" Width="1.5" PointX="9" PointY="6.625" />
+        <EntityTypeShape EntityType="HotelModel.Room_Type" Width="1.5" PointX="1.5" PointY="12" />
+        <EntityTypeShape EntityType="HotelModel.Service" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="HotelModel.User" Width="1.5" PointX="3.75" PointY="14.875" />
         <AssociationConnector Association="HotelModel.Booking_fk0" />
         <AssociationConnector Association="HotelModel.Booking_fk1" />
         <AssociationConnector Association="HotelModel.Booking_fk2" />
