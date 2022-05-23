@@ -33,7 +33,7 @@
                             <ListBox ItemsSource="{Binding DataContext.Pictures, RelativeSource={RelativeSource AncestorType=ListBox}}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
                                 <ListBox.ItemTemplate >
                                     <DataTemplate>
-                                        <Image Width="200" Height="100" />
+                                        <Image Width="200" Height="100" Source="{Binding}"/>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

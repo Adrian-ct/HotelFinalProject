@@ -14,7 +14,7 @@ namespace Hotel.ViewModel
         private MenuViewModel Menu { get; set; }
         private GuestViewModel Guest { get; set; }
         private ClientViewModel Client { get; set; }
-        private AdminViewModel Admin { get; set; }
+        //private AdminViewModel Admin { get; set; }
         public MainViewModel()
         {
             Register = new RegisterViewModel();
@@ -22,7 +22,7 @@ namespace Hotel.ViewModel
             Menu = new MenuViewModel();
             Guest = new GuestViewModel();
             Client = new ClientViewModel();
-            Admin = new AdminViewModel();
+            //Admin = new AdminViewModel();
         }
     }
 }

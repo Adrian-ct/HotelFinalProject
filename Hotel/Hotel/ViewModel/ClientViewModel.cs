@@ -32,26 +32,7 @@ namespace Hotel.ViewModel
         public ICommand SearchRooms { get; set; }
         public ClientViewModel()
         {
-            /* Room room1 = new Room();
-             room1.number = 1;
-             room1.price = 750;
-             room1.type = "single";
-             Picture picture1 = new Picture();
-             picture1.url = "https://www.itstactical.com/wp-content/uploads/2016/10/Hotel-Security-featured.jpg";
-             room1.Pictures.Add(picture1);
-
-
-             Room room2 = new Room();
-             Picture picture2 = new Picture();
-             room2.number = 2;
-             room2.price = 550;
-             room2.type = "quad";
-             picture2.url = "https://www.itstactical.com/wp-content/uploads/2016/10/Hotel-Security-featured.jpg";
-             room2.Pictures.Add(picture2);
-             room2.Pictures.Add(picture1);
-             //Rooms = new ObservableCollection<Room>();
-             Rooms.Add(room1);
-             //Rooms.Add(room2);*/
+            
             BookCommand = new RelayCommands(DisplayDate);
             AdminCommand = new RelayCommands(Admin);
             SearchRooms = new RelayCommands(Search);
@@ -90,6 +71,13 @@ namespace Hotel.ViewModel
             get { return isButtonVisible; }
             set { OnPropertyChanged(ref isButtonVisible, value); }
         }
+
+        private Room index;
+        public Room Index
+        {
+            get { return index; }
+            set { OnPropertyChanged(ref index, value); }
+        }
         public void DisplayDate()
         {
             MessageBox.Show(CheckOut.Date.ToString("yyyy-MM-dd"));
@@ -101,8 +89,10 @@ namespace Hotel.ViewModel
 
             App.Current.MainWindow.Close();
             App.Current.MainWindow = adminWindow;
+            AdminViewModel adminViewModel = new AdminViewModel(Index);
+            adminWindow.DataContext = adminViewModel;
             adminWindow.Show();
-            //MessageBox.Show("Admin");
+        
 
         }
 
@@ -116,6 +106,8 @@ namespace Hotel.ViewModel
             }
         }
 
+
+
         public void Search()
         {
 
@@ -125,7 +117,7 @@ namespace Hotel.ViewModel
             {
                 //room.Pictures.ElementAt(0).url
                 Pictures.Add(room.Pictures.ElementAt(0).url);
-                //break;
+                break;
             }
 
         }
