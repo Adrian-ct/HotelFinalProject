@@ -129,6 +129,12 @@
       <End Role="Room" EntitySet="Rooms" />
       <End Role="Picture" EntitySet="Pictures" />
     </AssociationSet>
+    <FunctionImport Name="GetAllUsers1" ReturnType="Collection(HotelModel.GetAllUsers1_Result)" />
+    <FunctionImport Name="GetRoomsFeatures1" ReturnType="Collection(HotelModel.GetRoomsFeatures1_Result)" />
+    <FunctionImport Name="SeeRoomsAvailable" ReturnType="Collection(HotelModel.SeeRoomsAvailable_Result)">
+      <Parameter Name="start_date" Mode="In" Type="String" />
+      <Parameter Name="end_date" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAllUsers_Result">
     <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
@@ -643,4 +649,22 @@
     <End Type="HotelModel.Room" Role="Room" Multiplicity="*" />
     <End Type="HotelModel.Picture" Role="Picture" Multiplicity="*" />
   </Association>
+  <ComplexType Name="GetAllUsers1_Result">
+    <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="role" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="GetRoomsFeatures1_Result">
+    <Property Type="Int32" Name="number" Nullable="false" />
+    <Property Type="String" Name="features" Nullable="true" />
+    <Property Type="String" Name="pictures" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SeeRoomsAvailable_Result">
+    <Property Type="Int32" Name="number" Nullable="false" />
+    <Property Type="Double" Name="price" Nullable="false" />
+    <Property Type="String" Name="type" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="features" Nullable="true" />
+    <Property Type="String" Name="pictures" Nullable="true" />
+  </ComplexType>
 </Schema>

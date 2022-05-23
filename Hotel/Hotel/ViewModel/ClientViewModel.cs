@@ -18,9 +18,9 @@ namespace Hotel.ViewModel
         public ObservableCollection<Room> Rooms { get; set; } = new ObservableCollection<Room>();
         RoomBLL roomBLL = new RoomBLL();
         public ICommand BookCommand { get; set; }
-
+        public ICommand AdminCommand { get; set; }
         public ClientViewModel()
-        {/*
+        {
             Room room1 = new Room();
             room1.number = 1;
             room1.price = 750;
@@ -40,9 +40,19 @@ namespace Hotel.ViewModel
             room2.Pictures.Add(picture1);
             //Rooms = new ObservableCollection<Room>();
             Rooms.Add(room1);
-            Rooms.Add(room2);*/
+            Rooms.Add(room2);
             BookCommand = new RelayCommands(DisplayDate);
-            Rooms = new ObservableCollection<Room>(roomBLL.GetAllRooms());
+            //Rooms = new ObservableCollection<Room>(roomBLL.GetAllRooms());
+            AdminCommand = new RelayCommands(Admin);
+
+            if (StaticResources.LoggedUser.role == "admin")
+            {
+                IsButtonVisible = true;
+            }
+            else
+            {
+                IsButtonVisible = false;
+            }
         }
 
         private DateTime checkIn;
@@ -58,9 +68,31 @@ namespace Hotel.ViewModel
             get { return checkOut; }
             set { OnPropertyChanged(ref checkOut, value); }
         }
+
+        private bool isButtonVisible;
+        public bool IsButtonVisible
+        {
+            get { return isButtonVisible; }
+            set { OnPropertyChanged(ref isButtonVisible, value); }
+        }
         public void DisplayDate()
         {
             MessageBox.Show(CheckOut.Date.ToString("dd/MM/yyyy"));
+        }
+
+        public void Admin()
+        {
+            MessageBox.Show("Admin");
+        }
+
+        public string type;
+        public string Type
+        {
+            get { return Type; }
+            set
+            {
+                OnPropertyChanged(ref type, value);
+            }
         }
     }
    

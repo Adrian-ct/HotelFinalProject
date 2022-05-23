@@ -43,6 +43,7 @@ namespace Hotel.ViewModel
             {
                 if (userBLL.LoginMethod(user).role == "client")
                 {
+                    StaticResources.LoggedUser = userBLL.LoginMethod(user);
                     ClientWindow clientWindow = new ClientWindow();
                     App.Current.MainWindow.Close();
                     App.Current.MainWindow = clientWindow;

@@ -466,6 +466,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetRoomsFeatures" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SeeRoomsAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start_date" Type="varchar" Mode="In" />
+          <Parameter Name="end_date" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="HotelModelStoreContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking_State" EntityType="Self.Booking_State" Schema="dbo" store:Type="Tables" />
@@ -729,6 +735,12 @@
             <End Role="Room" EntitySet="Rooms" />
             <End Role="Picture" EntitySet="Pictures" />
           </AssociationSet>
+          <FunctionImport Name="GetAllUsers1" ReturnType="Collection(HotelModel.GetAllUsers1_Result)" />
+          <FunctionImport Name="GetRoomsFeatures1" ReturnType="Collection(HotelModel.GetRoomsFeatures1_Result)" />
+          <FunctionImport Name="SeeRoomsAvailable" ReturnType="Collection(HotelModel.SeeRoomsAvailable_Result)">
+            <Parameter Name="start_date" Mode="In" Type="String" />
+            <Parameter Name="end_date" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="GetAllUsers_Result">
           <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
@@ -1243,6 +1255,24 @@
           <End Type="HotelModel.Room" Role="Room" Multiplicity="*" />
           <End Type="HotelModel.Picture" Role="Picture" Multiplicity="*" />
         </Association>
+        <ComplexType Name="GetAllUsers1_Result">
+          <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="last_name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="role" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetRoomsFeatures1_Result">
+          <Property Type="Int32" Name="number" Nullable="false" />
+          <Property Type="String" Name="features" Nullable="true" />
+          <Property Type="String" Name="pictures" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SeeRoomsAvailable_Result">
+          <Property Type="Int32" Name="number" Nullable="false" />
+          <Property Type="Double" Name="price" Nullable="false" />
+          <Property Type="String" Name="type" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="features" Nullable="true" />
+          <Property Type="String" Name="pictures" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1384,6 +1414,36 @@
               <ScalarProperty Name="number" ColumnName="room_number" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllUsers1" FunctionName="HotelModel.Store.GetAllUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelModel.GetAllUsers1_Result">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRoomsFeatures1" FunctionName="HotelModel.Store.GetRoomsFeatures">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelModel.GetRoomsFeatures1_Result">
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="features" ColumnName="features" />
+                <ScalarProperty Name="pictures" ColumnName="pictures" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SeeRoomsAvailable" FunctionName="HotelModel.Store.SeeRoomsAvailable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HotelModel.SeeRoomsAvailable_Result">
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="features" ColumnName="features" />
+                <ScalarProperty Name="pictures" ColumnName="pictures" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
