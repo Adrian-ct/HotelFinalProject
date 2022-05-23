@@ -48,7 +48,7 @@
     <Key>
       <PropertyRef Name="url" />
     </Key>
-    <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="url" Type="varchar" MaxLength="500" Nullable="false" />
   </EntityType>
   <EntityType Name="Receipt">
     <Key>
@@ -100,7 +100,7 @@
       <PropertyRef Name="url" />
       <PropertyRef Name="room_number" />
     </Key>
-    <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="url" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="room_number" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Room_Type">

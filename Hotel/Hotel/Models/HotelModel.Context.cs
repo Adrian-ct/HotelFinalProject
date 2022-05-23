@@ -49,6 +49,11 @@ namespace Hotel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllUsers_Result>("GetAllUsers");
         }
     
+        public virtual ObjectResult<GetFeatures_Result> GetFeatures()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetFeatures_Result>("GetFeatures");
+        }
+    
         public virtual ObjectResult<GetRoomsFeatures_Result> GetRoomsFeatures()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoomsFeatures_Result>("GetRoomsFeatures");
@@ -65,11 +70,6 @@ namespace Hotel.Models
                 new ObjectParameter("end_date", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SeeRoomsAvailable_Result>("SeeRoomsAvailable", start_dateParameter, end_dateParameter);
-        }
-    
-        public virtual ObjectResult<GetFeatures_Result> GetFeatures()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetFeatures_Result>("GetFeatures");
         }
     }
 }

@@ -72,15 +72,20 @@ namespace Hotel.ViewModel
             set { OnPropertyChanged(ref isButtonVisible, value); }
         }
 
-        private Room index;
-        public Room Index
+        private int index;
+        public int Index
         {
             get { return index; }
             set { OnPropertyChanged(ref index, value); }
         }
         public void DisplayDate()
         {
-            MessageBox.Show(CheckOut.Date.ToString("yyyy-MM-dd"));
+            DetailsWindow detailsWindow = new DetailsWindow();
+            App.Current.MainWindow.Close();
+            App.Current.MainWindow = detailsWindow;
+            DetailsViewModel adminViewModel = new DetailsViewModel(Index,RoomNr,checkIn,checkOut);
+            detailsWindow.DataContext = adminViewModel;
+            detailsWindow.Show();
         }
 
         public void Admin()
@@ -89,7 +94,7 @@ namespace Hotel.ViewModel
 
             App.Current.MainWindow.Close();
             App.Current.MainWindow = adminWindow;
-            AdminViewModel adminViewModel = new AdminViewModel(Index);
+            AdminViewModel adminViewModel = new AdminViewModel(RoomNr);
             adminWindow.DataContext = adminViewModel;
             adminWindow.Show();
         
@@ -121,6 +126,17 @@ namespace Hotel.ViewModel
             }
 
         }
+
+        private Room roomNr;
+        public Room RoomNr
+        {
+            get { return roomNr; }
+            set
+            {
+                OnPropertyChanged(ref roomNr, value);
+            }
+        }
+
     }
 
 

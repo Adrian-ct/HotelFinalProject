@@ -78,6 +78,7 @@
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogicLayer\RoomBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ServiceBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UserBLL.cs" />
     <Compile Include="Models\Feature.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
