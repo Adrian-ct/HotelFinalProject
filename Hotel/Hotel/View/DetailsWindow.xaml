@@ -10,7 +10,7 @@
         <Grid>
 
             <Button Margin="30,0,0,15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="30" Command="{Binding TestCommand}" >Rezerva</Button>
-
+            <TextBox Margin="250,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Height="100" IsReadOnly="True" TextWrapping="WrapWithOverflow"  FontSize="20" Text="{Binding FinalPrice}"/>
             <StackPanel  Margin="20 50 0  0" Orientation="Vertical" Width="200" HorizontalAlignment="Left" Height="150"  VerticalAlignment="Top" >
                 <ListBox x:Name="listBoxSignUp" Grid.Row="2" Width="200" Height="150" HorizontalAlignment="Left" Margin="0,0,0,0" FontSize="20" Background="Transparent"  Foreground="Black" BorderBrush="White"  ItemsSource="{Binding Features}">
                     <ListBox.ItemTemplate>

@@ -17,7 +17,7 @@ namespace Hotel.ViewModel
     internal class DetailsViewModel : ObservableObject
     {
 
-
+        public HotelEntities context = new HotelEntities();
         public ICommand BackCommand { get; }
         public ICommand NextCommand { get; }
         public ICommand PreviousCommand { get; }
@@ -35,14 +35,15 @@ namespace Hotel.ViewModel
         List<Hotel.Models.Room> roomsList1;
         int indexOfRoomInList;
         int imageIndex = 0;
-        public DetailsViewModel(int index, Room roomNumber, DateTime checkIn, DateTime checkOut)
+        public DetailsViewModel(int index, Room roomNumber, DateTime check, DateTime chech)
         {
+            roomCopy = roomNumber;
             BackCommand = new RelayCommands(Back);
             NextCommand = new RelayCommands(Next);
             PreviousCommand = new RelayCommands(Previous);
             TestCommand = new RelayCommands(Testbutton);
 
-            List<Hotel.Models.Room> roomsList = room.GetAllRooms(checkIn, checkOut);
+            List<Hotel.Models.Room> roomsList = room.GetAllRooms(check, chech);
 
             indexOfRoomInList = index;
             ImageSource = roomsList[index].Pictures.ElementAt(imageIndex).url;
@@ -54,7 +55,12 @@ namespace Hotel.ViewModel
 
             Service = new ObservableCollection<Service>(servicesList);
 
+            //checkIn=
+            //checkIn = check.Date.ToString("yyyy-MM-dd");
+            //checkOut = chech.Date.ToString("yyyy-MM-dd");
 
+            checkIn = check;
+            checkOut = chech;
 
             AllInclusivePrice = (int)Service.ElementAt(0).price;
             BarbequePrice = (int)Service.ElementAt(1).price;
@@ -119,6 +125,50 @@ namespace Hotel.ViewModel
         public void Testbutton()
         {
 
+            //roomCopy
+            //
+            List<string> services = new List<string>();
+            if (AllInclusiveBool)
+                services.Add("all_inclusive");
+            if (BarbequeBool)
+                services.Add("barbeque");
+            if (BreakfastBool)
+                services.Add("breakfast");
+            if (TransportBool)
+                services.Add("transport");
+
+            if (StaticResources.LoggedUser.role == "client")
+            {
+                var newReceipt = new Receipt();
+                newReceipt.price = 0;
+
+                var receipt = context.Receipts.Add(newReceipt);
+                foreach (var service in services)
+                    receipt.Services.Add(context.Services.Find(service));
+
+                
+                var newBooking = new Booking();
+                newBooking.start_date = checkIn;
+                newBooking.end_date = checkOut;
+
+                double final_price = 0;
+                foreach (var service in receipt.Services)
+                    final_price += service.price;
+                final_price += roomCopy.price;
+
+                FinalPrice = "The booking was succesfull, the total price is "+final_price.ToString();
+             
+                receipt.price = final_price;
+                newBooking.username = StaticResources.LoggedUser.username;
+                newBooking.room_number = roomCopy.number;
+                //newBooking.id_receipt = context.Receipts.Last().id;
+                newBooking.id_receipt = context.Receipts.OrderByDescending(x => x.id).FirstOrDefault().id + 1;
+                newBooking.state = "active";
+
+                context.Bookings.Add(newBooking);
+                context.SaveChanges();
+
+            }
         }
 
         private bool allInclusiveBool;
@@ -281,7 +331,57 @@ namespace Hotel.ViewModel
 
         }
 
+        private Room roomCopy;
+        public Room RoomCopy
+        {
+            get
+            {
+                return roomCopy;
+            }
+            set
+            {
+                OnPropertyChanged(ref roomCopy, value);
+            }
+        }
 
 
+        private DateTime checkIn;
+        public DateTime CheckIn
+        {
+            get
+            {
+                return checkIn;
+            }
+            set
+            {
+                OnPropertyChanged(ref checkIn, value);
+            }
+        }
+
+        private DateTime checkOut;
+        public DateTime CheckOut
+        {
+            get
+            {
+                return checkOut;
+            }
+            set
+            {
+                OnPropertyChanged(ref checkOut, value);
+            }
+        }
+
+        public string finalPrice;
+        public string FinalPrice
+        {
+            get
+            {
+                return finalPrice;
+            }
+            set
+            {
+                OnPropertyChanged(ref finalPrice, value);
+            }
+        }
     }
 }

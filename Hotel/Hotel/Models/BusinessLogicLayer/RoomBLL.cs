@@ -25,6 +25,7 @@ namespace Hotel.Models.BusinessLogicLayer
                 room.price = roomAvailable.price;
                 room.type = roomAvailable.type;
 
+
                 string[] features = roomAvailable.features.Split(',');
 
                 foreach (var feature in features)
@@ -34,15 +35,23 @@ namespace Hotel.Models.BusinessLogicLayer
                     room.Features.Add(roomFeature);
                 }
 
-                string[] images = roomAvailable.pictures.Split(',');
-
-                foreach (var image in images)
+                if (roomAvailable.pictures != null)
                 {
-                    Picture roomPicture = new Picture();
-                    roomPicture.url = image;
-                    room.Pictures.Add(roomPicture);
+                    if (roomAvailable.pictures.Length > 0)
+                    {
+                        string[] split = roomAvailable.pictures.Split(new Char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var image in split)
+                        {
+                            Picture roomPicture = new Picture();
+                            roomPicture.url = image;
+                            room.Pictures.Add(roomPicture);
+                        }
+
+
+                    }
                 }
                 rooms.Add(room);
+
             }
             return rooms;
         }
@@ -118,26 +127,26 @@ namespace Hotel.Models.BusinessLogicLayer
         {
 
 
-            List<string>features = new List<string>();
+            List<string> features = new List<string>();
             if (editAir)
             {
 
                 features.Add("air_conditioner");
             }
-             if (editBalcony)
+            if (editBalcony)
             {
-               
+
                 features.Add("balcony");
             }
-             if (editShower)
+            if (editShower)
             {
                 features.Add("shower");
             }
-             if (editTv)
+            if (editTv)
             {
                 features.Add("tv");
             }
-             if (editWifi)
+            if (editWifi)
             {
                 features.Add("wifi");
             }
@@ -151,7 +160,7 @@ namespace Hotel.Models.BusinessLogicLayer
                 featuresList.Add(dbFeature);
             }
 
-            
+
             List<Picture> pictureList = new List<Picture>();
 
             if (images.Contains(','))
