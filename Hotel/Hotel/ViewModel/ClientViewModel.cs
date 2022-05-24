@@ -41,14 +41,43 @@ namespace Hotel.ViewModel
             checkOut = new DateTime(2022, 05, 23);
 
 
-            if (StaticResources.LoggedUser.role == "admin")
+            if (StaticResources.LoggedUser == null)
             {
-                IsButtonVisible = true;
+                IsButtonReservedVisible = false;
+                IsButtonAdminVisible = false;
             }
-            else
+            else if (StaticResources.LoggedUser.role == "admin")
             {
-                IsButtonVisible = false;
+                IsButtonAdminVisible = true;
+                IsButtonReservedVisible = false;
             }
+            else if (StaticResources.LoggedUser.role == "client")
+            {
+                IsButtonReservedVisible = true;
+                IsButtonAdminVisible = false;
+            }
+
+            /*Room room1 = new Room();
+            room1.number = 1;
+            room1.price = 750;
+            room1.type = "single";
+            Picture picture1 = new Picture();
+            picture1.url = "https://www.itstactical.com/wp-content/uploads/2016/10/Hotel-Security-featured.jpg";
+            room1.Pictures.Add(picture1);
+
+
+            Room room2 = new Room();
+            Picture picture2 = new Picture();
+            room2.number = 2;
+            room2.price = 550;
+            room2.type = "quad";
+            picture2.url = "https://www.itstactical.com/wp-content/uploads/2016/10/Hotel-Security-featured.jpg";
+            room2.Pictures.Add(picture2);
+            room2.Pictures.Add(picture1);
+            //Rooms = new ObservableCollection<Room>();
+            Rooms.Add(room1);
+            Rooms.Add(room2);*/
+
         }
 
         private DateTime checkIn;
@@ -77,6 +106,20 @@ namespace Hotel.ViewModel
         {
             get { return index; }
             set { OnPropertyChanged(ref index, value); }
+        }
+
+        private bool isButtonReservedVisible;
+        public bool IsButtonReservedVisible
+        {
+            get { return isButtonReservedVisible; }
+            set { OnPropertyChanged(ref isButtonReservedVisible, value); }
+        }
+
+        private bool isButtonAdminVisible;
+        public bool IsButtonAdminVisible
+        {
+            get { return isButtonAdminVisible; }
+            set { OnPropertyChanged(ref isButtonAdminVisible, value); }
         }
         public void DisplayDate()
         {
@@ -118,12 +161,7 @@ namespace Hotel.ViewModel
 
             Rooms = new ObservableCollection<Room>(roomBLL.GetAllRooms(checkIn, checkOut));
             Pictures = new ObservableCollection<string>();
-            foreach (var room in Rooms)
-            {
-                //room.Pictures.ElementAt(0).url
-                Pictures.Add(room.Pictures.ElementAt(0).url);
-                break;
-            }
+            
 
         }
 

@@ -17,6 +17,7 @@
     </Window.DataContext>
 
     <Grid>
+        
         <DatePicker Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40, 20" SelectedDate="{Binding CheckIn}"/>
         <DatePicker Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="200, 20" SelectedDate="{Binding CheckOut}"/>
         <Button Background="AliceBlue" Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="350, 20" Content="Search" Command="{Binding SearchRooms}"/>
@@ -30,13 +31,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.Column="0"  >
 
-                            <ListBox ItemsSource="{Binding DataContext.Pictures, RelativeSource={RelativeSource AncestorType=ListBox}}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
-                                <ListBox.ItemTemplate >
-                                    <DataTemplate>
-                                        <Image Width="200" Height="100" />
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                            <Image Margin="3" Width="200" Height="100" Source="{Binding image}"/>
 
                             <TextBlock Margin="3" Text="Tip camera:" FontSize="20"/>
                             <TextBlock Margin="3" Text="{Binding type}" FontSize="20"/>
@@ -52,11 +47,13 @@
                                 </StackPanel>
                                 <Button Content="Rezerva" Margin="0, 50, 0, 0" Padding="4" Background="#ffd77b" 
                                         Command="{Binding DataContext.BookCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
-                                       />
+                                       Visibility="{Binding DataContext.IsButtonReservedVisible, RelativeSource={RelativeSource AncestorType=ListBox}, 
+                                    Converter={StaticResource booleanConverter}}"
+                                        />
 
                                 <Button Content="Administreaza" Margin="0, 30, 0, 0" Padding="4" Background="#ffd77b" 
                                         Command="{Binding DataContext.AdminCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                        Visibility="{Binding DataContext.IsButtonVisible, RelativeSource={RelativeSource AncestorType=ListBox}, 
+                                        Visibility="{Binding DataContext.IsButtonAdminVisible, RelativeSource={RelativeSource AncestorType=ListBox}, 
                                     Converter={StaticResource booleanConverter}}"
                                         />
                             </StackPanel>

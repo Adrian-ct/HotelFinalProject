@@ -24,8 +24,7 @@ namespace Hotel.Models.BusinessLogicLayer
                 room.number = roomAvailable.number;
                 room.price = roomAvailable.price;
                 room.type = roomAvailable.type;
-
-
+                
                 string[] features = roomAvailable.features.Split(',');
 
                 foreach (var feature in features)
@@ -40,6 +39,8 @@ namespace Hotel.Models.BusinessLogicLayer
                     if (roomAvailable.pictures.Length > 0)
                     {
                         string[] split = roomAvailable.pictures.Split(new Char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        room.image = split[0];
+
                         foreach (var image in split)
                         {
                             Picture roomPicture = new Picture();
@@ -188,6 +189,7 @@ namespace Hotel.Models.BusinessLogicLayer
             dbRoom.number = editNumber;
             dbRoom.type = editType;
 
+            dbRoom.Pictures.Clear();
             foreach (var picture in pictureList)
             {
                 dbRoom.Pictures.Add(picture);

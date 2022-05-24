@@ -41,7 +41,7 @@ namespace Hotel.ViewModel
             }
             else
             {
-                if (userBLL.LoginMethod(user).role == "client" || userBLL.LoginMethod(user).role == "admin")
+                if (userBLL.LoginMethod(user).role == "client" || userBLL.LoginMethod(user).role == "admin" || userBLL.LoginMethod(user).role == "employee")
                 {
                     StaticResources.LoggedUser = userBLL.LoginMethod(user);
                     ClientWindow clientWindow = new ClientWindow();

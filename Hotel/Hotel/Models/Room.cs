@@ -24,6 +24,7 @@ namespace Hotel.Models
     
         public int number { get; set; }
         public string type { get; set; }
+        public string image { get; set; }
         public double price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -45,10 +45,10 @@ namespace Hotel.ViewModel
 
         public void Guest()
         {
-            GuestWindow guestWindow = new GuestWindow();
+            ClientWindow clientWindow = new ClientWindow();
             App.Current.MainWindow.Close();
-            App.Current.MainWindow = guestWindow;
-            guestWindow.Show();
+            App.Current.MainWindow = clientWindow;
+            clientWindow.Show();
         }
 
 
