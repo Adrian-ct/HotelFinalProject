@@ -125,3 +125,7 @@ C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug
 C:\Users\EmilBotezatu\Work\Facultate\MVP\HotelFinalProject\Hotel\Hotel\obj\Debug\View\AdminWindow.baml
 C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\obj\Debug\View\AdminWindow.g.cs
 C:\Users\LeonardBejgu\Documents\GithubMixconix\HotelFinalProject\Hotel\Hotel\obj\Debug\View\AdminWindow.baml
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\DetailsWindow.baml
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\AdminWindow.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\DetailsWindow.g.cs
+C:\Personal Stuff\Facultate\MVP\FinalProject\HotelFinalProject\Hotel\Hotel\obj\Debug\View\AdminWindow.baml

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Hotel.ViewModel
@@ -199,6 +200,7 @@ namespace Hotel.ViewModel
         public void Edit()
         {
             roomBLL.Edit(editPrice, editNumber, editType, editImages,  editAir,  editBalcony,  editShower, editTv, editWifi);
+            MessageBox.Show("The room was updated succesfully");
         }
 
         //proprieties for editedRoom
