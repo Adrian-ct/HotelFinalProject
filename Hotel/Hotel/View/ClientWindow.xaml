@@ -18,54 +18,72 @@
 
     <Grid>
         
-        <DatePicker Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40, 20" SelectedDate="{Binding CheckIn}"/>
-        <DatePicker Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="200, 20" SelectedDate="{Binding CheckOut}"/>
-        <Button Background="AliceBlue" Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="350, 20" Content="Search" Command="{Binding SearchRooms}"/>
-        <ListBox SelectedIndex="{Binding Index}" SelectedItem="{Binding RoomNr}" BorderThickness="2" Grid.Row="2" x:Name="listBox"  Margin="40,100,40,0"  AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Beige" ItemsSource="{Binding Rooms}">
-            <ListBox.ItemTemplate >
-                <DataTemplate>
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0"  >
+        <TabControl Margin="0,0,0,0">
+           
+            <TabItem Width="100" Height="30" Header="Available Rooms">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                    <DatePicker Height="25" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40, 20" SelectedDate="{Binding CheckIn}"/>
+                    <DatePicker Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="0, 20" SelectedDate="{Binding CheckOut}"/>
+                    <Button Background="AliceBlue" Height="25" Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="40, 20" Content="Search" Command="{Binding SearchRooms}"/>
+                    </StackPanel>
 
-                            <Image Margin="3" Width="200" Height="100" Source="{Binding image}"/>
+                    <ListBox Height="320" SelectedIndex="{Binding Index}" SelectedItem="{Binding RoomNr}" BorderThickness="2" Grid.Row="2" x:Name="listBox"  Margin="40,10,40,0"  AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Beige" ItemsSource="{Binding Rooms}">
+                        <ListBox.ItemTemplate >
+                            <DataTemplate>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0"  >
 
-                            <TextBlock Margin="3" Text="Tip camera:" FontSize="20"/>
-                            <TextBlock Margin="3" Text="{Binding type}" FontSize="20"/>
+                                        <Image Margin="3" Width="200" Height="100" Source="{Binding image}"/>
+
+                                        <TextBlock Margin="3" Text="Tip camera:" FontSize="20"/>
+                                        <TextBlock Margin="3" Text="{Binding type}" FontSize="20"/>
 
 
-                        </StackPanel >
-                        <Grid Grid.Column="1"  Margin="220, 0, 0, 0" >
-                            <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Top"  >
-                                    <TextBlock  Text="Pret:" FontSize="20"></TextBlock>
-                                    <TextBlock Margin="0, 0, 30,0"  Text="{Binding price}" FontSize="20"></TextBlock>
+                                    </StackPanel >
+                                    <Grid Grid.Column="1"  Margin="220, 0, 0, 0" >
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Top"  >
+                                                <TextBlock  Text="Pret:" FontSize="20"></TextBlock>
+                                                <TextBlock Margin="0, 0, 30,0"  Text="{Binding price}" FontSize="20"></TextBlock>
 
-                                </StackPanel>
-                                <Button Content="Rezerva" Margin="0, 50, 0, 0" Padding="4" Background="#ffd77b" 
+                                            </StackPanel>
+                                            <Button Content="Rezerva" Margin="0, 50, 0, 0" Padding="4" Background="#ffd77b" 
                                         Command="{Binding DataContext.BookCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
                                        Visibility="{Binding DataContext.IsButtonReservedVisible, RelativeSource={RelativeSource AncestorType=ListBox}, 
                                     Converter={StaticResource booleanConverter}}"
                                         />
 
-                                <Button Content="Administreaza" Margin="0, 30, 0, 0" Padding="4" Background="#ffd77b" 
+                                            <Button Content="Administreaza" Margin="0, 30, 0, 0" Padding="4" Background="#ffd77b" 
                                         Command="{Binding DataContext.AdminCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                         Visibility="{Binding DataContext.IsButtonAdminVisible, RelativeSource={RelativeSource AncestorType=ListBox}, 
                                     Converter={StaticResource booleanConverter}}"
                                         />
-                            </StackPanel>
+                                        </StackPanel>
 
-                        </Grid>
+                                    </Grid>
 
-                    </Grid>
+                                </Grid>
 
 
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </StackPanel>
+                
+
+                
+            </TabItem>
+            <TabItem Width="100" Height="30" Header="Offers">
+                
+            </TabItem>
+        </TabControl>
+        
 
     </Grid>
 </Window>

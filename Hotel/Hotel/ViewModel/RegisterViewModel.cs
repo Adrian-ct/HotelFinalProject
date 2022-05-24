@@ -34,32 +34,33 @@ namespace Hotel.ViewModel
 
         public void Register()
         {
-            //user.username = Username;
-            //if (1==2)
-            //{
-            //    MessageBox.Show("Username exists!");
-            //}
-            //else
-            {
-                user.username = Username;
-                user.first_name = FirstName;
-                user.last_name = LastName;
-                user.role = Role;
 
-                switch (Role)
-                {
-                    case "0":
-                        user.role = "admin";
-                        break;
-                    case "1":
-                        user.role = "employee";
-                        break;
-                    case "2":
-                        user.role = "client";
-                        break;
-                }
-                userBLL.RegisterMethod(user);
+
+            user.username = Username;
+            user.first_name = FirstName;
+            user.last_name = LastName;
+            user.role = Role;
+
+            switch (Role)
+            {
+                case "0":
+                    user.role = "admin";
+                    break;
+                case "1":
+                    user.role = "employee";
+                    break;
+                case "2":
+                    user.role = "client";
+                    break;
             }
+            userBLL.RegisterMethod(user);
+
+
+            StaticResources.LoggedUser = user;
+            ClientWindow clientWindow = new ClientWindow();
+            App.Current.MainWindow.Close();
+            App.Current.MainWindow = clientWindow;
+            clientWindow.Show();
         }
 
 
